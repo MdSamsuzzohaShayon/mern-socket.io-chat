@@ -24,14 +24,22 @@ const Chat =({location})=>{
         // console.log(data);
         // console.log(name, room);
 
+
+        // https://github.com/socketio/socket.io-client
         socket = io(ENDPOINT);
         console.log(socket);
         
 
-
         setName(name);
-        setRoom(room);       
-    });
+        setRoom(room);
+        
+        // https://socket.io/get-started/chat/#Emitting-events
+        socket.emit('join', {name, room}, (error )=>{
+            // console.error(error ) ;
+            alert(error );
+        });
+
+    }, [ENDPOINT, location.search]);
 
 
 

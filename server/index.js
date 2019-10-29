@@ -12,10 +12,25 @@ const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 const io = socketio(server);
 
+
+// https://nodejs.org/dist/latest-v12.x/docs/api/events.html#events_emitter_on_eventname_listener
 // AT FIRST USER WILL BE CONNECTED
 // https://socket.io/get-started/chat/
 io.on('connection', (socket)=>{
     console.log("we have a new connection!!!");
+
+    socket.on('join', ({name, room}, callback)=>{
+        console.log(name);
+        console.log(room);
+
+        /*
+        const error = true;
+
+        if(error){
+            callback({error : 'error'});
+        }
+        */
+    });
 
     // WHEN USER WILL BE DISCONNECTED
     socket.on('disconnect', ()=>{
