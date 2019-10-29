@@ -34,10 +34,17 @@ const Chat =({location})=>{
         setRoom(room);
         
         // https://socket.io/get-started/chat/#Emitting-events
-        socket.emit('join', {name, room}, (error )=>{
+        socket.emit('join', {name, room}, ( )=>{
             // console.error(error ) ;
-            alert(error );
+            // alert(error );
         });
+
+
+        // UNMOUNT OR DISCONNECT EFFECT 
+        return ()=>{
+            socket.emit('disconnect');
+            socket.off();
+        };
 
     }, [ENDPOINT, location.search]);
 
