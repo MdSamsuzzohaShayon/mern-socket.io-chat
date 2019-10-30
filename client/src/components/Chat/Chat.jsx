@@ -6,7 +6,7 @@ import React, {
 // https://socket.io/docs/client-api/
 import queryString from 'query-string';
 import io from 'socket.io-client';
-
+import InfoBar from '../InfoBar/InfoBar';
 import './Chat.css';
 
 let socket;
@@ -78,11 +78,14 @@ const Chat = ({location}) => {
 
 
     return ( 
-        <div className = "outerContainer container" >
-            <input type = "text"
-            value = {message}
-            onChange = {(event) => setMessage(event.target.value)}
-            onKeyPress = {event=> event.key === "Enter" ? sendMessage(event) : null}/> 
+        <div className = "outerContainer" >
+            <div className="container">
+            <InfoBar room={room} />
+                {/* <input type = "text"
+                value = {message}
+                onChange = {(event) => setMessage(event.target.value)}
+                onKeyPress = {event=> event.key === "Enter" ? sendMessage(event) : null}/>  */}
+            </div>
         </div>
     );
 }
