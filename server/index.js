@@ -23,14 +23,14 @@ const io = socketio(server);
 // AT FIRST USER WILL BE CONNECTED
 // https://socket.io/get-started/chat/
 io.on('connection', (socket) => {
-    console.log("we have a new connection!!!");
+    // console.log("we have a new connection!!!");
 
     socket.on('join', ({
         name,
         room
     }, callback) => {
-        console.log(name);
-        console.log(room);
+        // console.log(name);
+        // console.log(room);
 
         /*
         const error = true;
@@ -39,7 +39,31 @@ io.on('connection', (socket) => {
             callback({error : 'error'});
         }
         */
+
+        const {error, user} = addUser({id: socket.id, name, room});
+        if(error ) return callback(error);
+
+        // WELCOMING USER
+        // https://socket.io/docs/#Broadcasting-messages
+        socket.emit('message', {user: 'admin', text: `${user.name}, Welcome to the room ${user.room}`});
+        
+        // https://socket.io/docs/#Broadcasting-messages // BROADCAST WILL SEND ALL USER EXCEPT SPECFIC 
+        socket.broadcast.to(user.room).emit('message', {user: 'admin', text: `${user.name} has joined`})
+
+        socket.join(user.room);
+
+        callback(); 
     });
+
+    // EVENT FOR USER GENERATED MESSAGE
+    socket.on('sendMessage', (message, callback)=>{
+        const user = getUser(socket.id);
+
+        io.to(user.room).emit('message', {user: user.name, text: message});
+        callback();
+    })
+
+
 
     // WHEN USER WILL BE DISCONNECTED
     socket.on('disconnect', () => {
