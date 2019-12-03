@@ -1,0 +1,24 @@
+{
+  "name": "socketio",
+  "version": "1.0.0",
+  "description": "[Tutorial link](https://www.youtube.com/watch?v=soerr09FYCw&list=PLvXDmnBbOF7R2AVit9M9cjbmC7CC48tyD)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MdSamsuzzohaShayon/mern-socket.io-chat.git"
+  },
+  "author": "shayon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MdSamsuzzohaShayon/mern-socket.io-chat/issues"
+  },
+  "homepage": "https://github.com/MdSamsuzzohaShayon/mern-socket.io-chat#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
+  }
+}
