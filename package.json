@@ -2,7 +2,7 @@
   "name": "socketio",
   "version": "1.0.0",
   "description": "[Tutorial link](https://www.youtube.com/watch?v=soerr09FYCw&list=PLvXDmnBbOF7R2AVit9M9cjbmC7CC48tyD)",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
