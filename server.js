@@ -14,6 +14,12 @@ io.on('connection', (socket)=>{
 */
 
 
+
+
+
+
+
+/*
 // ROUTING THOUGH SOCKET
 // https://socket.io/docs/rooms-and-namespaces/
 const gameRooms = ["rocket league", "csgo", 'bt1'];
@@ -30,8 +36,33 @@ io.of('/games').on('connection', (socket)=>{
         }else{
             return socket.emit("err", "No Room Names " + room );
         }
-    })
+    });
+
+
+    // https://socket.io/get-started/chat/#Integrating-Socket-IO
+    // https://socket.io/docs/server-api/#socket-disconnect-close
+    socket.disconnect()
 });
+*/
+
+
+
+
+
+
+
+io.of('/chat').on('connection', (socket)=>{
+    socket.on('newMsg', (data)=>{
+        console.log("new message receved from the user: "+data.username+" : "+data.msg);
+    });
+});
+
+
+
+
+
+
+
 
 http.listen(port, ()=>{
     console.log("server is running on 127.0.0.1:"+port);
